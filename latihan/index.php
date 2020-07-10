@@ -28,10 +28,10 @@ $mahasiswa =query("SELECT * FROM mahasiswa");
     <?php foreach ($mahasiswa as $row): ?>
     <tr>
       <td><?php echo $i; ?></td>
-      <td><a href="ubah.php">Ubah</a> | 
+      <td><a href="ubah.php?id=<?= $row["id"];?>">Ubah</a> | 
       <a href="hapus.php?id=<?= $row["id"];?>" onclick="return confirm('Yakin Hapus Data?');">Hapus</a>
       </td>
-      <td><img src="images/<?=$row["gambar"]?>" width="50"></td>
+      <td><img src="images/<?=$row["gambar"];?>" width="50"></td>
       <td><?= $row["nim"]; ?></td>
       <td><?= $row["nama"]; ?></td>
       <td><?= $row["email"]; ?></td>

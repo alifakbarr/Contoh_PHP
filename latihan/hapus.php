@@ -17,8 +17,6 @@ if(hapus($id)>0){
   document.location.href='index.php';
   </script>
   ";
-  echo "<br>";
-  echo mysqli_error($conn);
 }
 
 ?>
