@@ -1,0 +1,34 @@
+{
+	"PHP Tag": {
+	  "prefix": "php",
+	  "body": "<?php $1 ?>"
+	},
+	"Inline Echo": {
+	  "prefix": "phpp",
+	  "body": "<?= $$1; ?>"
+	},
+	"Input Label": {
+	  "prefix": "formel",
+	  "body": [
+		"<label for=\"${2:username}\">${3:Username}</label>",
+		"<input type=\"${1:text}\" name=\"${2:username}\" id=\"${2:username}\">",
+		"</label>"
+	  ]
+	},
+	"My Form": {
+	  "prefix": "myform",
+	  "body": "<form method=\"${1|get,post|}\" action=\"$2\">$3</form>"
+	},
+	"echo tag":{
+		"prefix": "tam",
+		"body": "echo \"$1\";"
+	},
+	"echo tag2":{
+		"prefix": "tbr",
+		"body": "echo \"<br>\";$1"
+	},
+	"button":{
+		"prefix": "buti",
+		"body": "<button type=\"$1\" name=\"$2\">$3</button>"
+	}
+  }
