@@ -35,13 +35,14 @@ if (isset($_POST["submit"])) {
 </head>
 <body>
   <h1>Ubah Data Mahasiswa</h1>
-  <form method="post" action="">
+  <form method="post" action="" enctype="multipart/form-data">
 
 <!-- fungsi dari required agar user mewajibkan mengisi data -->
 <!-- value akan otomatis mengisi field -->
 
   <ul>
     <input type="hidden" name="id" value="<?= $mhs["id"]; ?>">
+    <input type="hidden" name="gambarLama" value="<?= $mhs["gambar"];?>">
     <li>
   <label for="nim">Nim : </label>
   <input type="text" name="nim" id="nim" required value="<?= $mhs["nim"]; ?>">
@@ -63,8 +64,9 @@ if (isset($_POST["submit"])) {
     </label>
   </li>
   <li>
-    <label for="gambar">Gambar : </label>
-    <input type="text" name="gambar" id="gambar" required value="<?= $mhs["gambar"];?>">
+    <label for="gambar">Gambar : </label><br>
+    <img src="images/<?= $mhs['gambar'] ?>"><br>
+    <input type="file" name="gambar" id="gambar">
     </label>
   </li>
   <li>

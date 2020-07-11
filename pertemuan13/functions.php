@@ -40,10 +40,11 @@ function tambah($data){
 }
 
 function upload(){
-    $namaFile = $_FILES['gambar']['name'];
-    $UkuranFile= $_FILES['gambar']['size'];
-    $error = $_FILES['gambar']['error'];
-    $tmpName = $_FILES['gambar']['tmp_name'];
+    $namaFile = $_FILES["gambar"]["name"];
+    $UkuranFile= $_FILES["gambar"]["size"];
+    $error = $_FILES["gambar"]["error"];
+    $tmpName = $_FILES["gambar"]["tmp_name"];
+
 // 4 adalah arti dari error kalau gambar tidak diupload
     if($error === 4){
       echo "<script>alert('Upload gambar dahulu');</script>";
@@ -74,8 +75,17 @@ if($UkuranFile > 1000000){
   </script>";
   return false;
   }
+  //lolos pengecekan ,gambar siap upload
+  // move_uploaded_file untuk memindahkan file
+  // uniqid() akan membangkitkan string random
+  //generate nama baru
+  $namaFileBaru = uniqid();
+  $namaFileBaru .= '.';
+  $namaFileBaru .=$ekstensiGambar;
+  move_uploaded_file($tmpName,'images/'.$namaFileBaru);
 
-  if
+  return $namaFileBaru;
+
 }
 function hapus($id){
   global $conn;
@@ -93,8 +103,14 @@ function ubah($data){
   $nama=htmlspecialchars($data["nama"]);
   $email=htmlspecialchars($data["email"]);
   $jurusan=htmlspecialchars($data["jurusan"]);
-  $gambar=htmlspecialchars($data["gambar"]);
-
+  $gambarLama =htmlspecialchars($data["gambarLama"]);
+  //jika user tidak upload maka $gambar diisi dengan gambar lama
+  if($_FILES['gambar']['error']===4){
+    $gambar = $gambarLama;
+  }else{
+    $gambar=upload();
+  }
+  
   //query ubah data
   $query="UPDATE mahasiswa SET
           nim='$nim',
