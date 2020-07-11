@@ -2,6 +2,10 @@
 require 'koneksi.php';
 
 $mahasiswa =query("SELECT * FROM mahasiswa");
+
+if(isset($_POST["cari"])){
+  $mahasiswa=cari($_POST["keyword"]);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +18,10 @@ $mahasiswa =query("SELECT * FROM mahasiswa");
   <h1>Data Mahasiswa</h1>
   <a href="tambah.php">Tambah Data</a>
   <br><br>
+  <form action="" method="POST">
+  <input type="text" name="keyword" autofocus autocomplete placeholder="Masukkan pencarian disini.." size="45">
+  <button type="submit" name="cari">Cari</button>
+  </form>
   <table border="1" cellpadding="10" cellspacing="0";>
     <tr>
       <th>No</th>
