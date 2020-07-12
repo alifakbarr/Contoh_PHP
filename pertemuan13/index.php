@@ -1,7 +1,6 @@
 <?php 
 require 'functions.php';
 $mahasiswa = query("SELECT * FROM mahasiswa");
-
 // mahasiswa akan berisi data dari function cari ,dan fuction cari akan mendapatkan data dari user yang diketikkan
 if(isset($_POST["cari"])){
   // variabel mahasiswa dibawah ini

@@ -18,12 +18,24 @@ function tambah($data){
   $email = htmlspecialchars($data["email"]);
   $jurusan = htmlspecialchars($data["jurusan"]);
   $gambar = htmlspecialchars($data["gambar"]);
+  
+  $gambar =upload();
+  if (!$gambar) {
+    return false;
+  }
 
   $query ="INSERT INTO mahasiswa VALUES
     ('','$nim','$nama','$email','$jurusan','$gambar')";
   mysqli_query($conn,$query);
 
   return mysqli_affected_rows($conn);
+}
+function upload(){
+  $namaFile = $_FILES["gambar"]["name"];
+  $ukuranFile = $_FILES["gambar"]["size"];
+  $tmpName = $_FILES["gambar"]["tmp_name"];
+
+  
 }
 function hapus ($id){
   global $conn;

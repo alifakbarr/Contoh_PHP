@@ -55,7 +55,7 @@ function upload(){
 // ekstensi file yang boleh diupload
 $ekstensiGambarValid=['jpg','jpeg','png'];
 // mengambil ekstensi dari satu string gambar yang kita upload
-// expload adalah fungsi yang digunakan untuk memecahkan string menjadi array
+// explode adalah fungsi yang digunakan untuk memecahkan string menjadi array
 // contoh irdho.jpg menjadi ['irdho','jpg']
 $ekstensiGambar =explode('.',$namaFile);
 // fungsi end untuk mengambil array paling akhir
@@ -69,16 +69,15 @@ if(!in_array($ekstensiGambar,$ekstensiGambarValid)){
   }
 // cek ukuruan jika terlalu besar
 // 2000000 sama dengan 2mb dalam byte
-if($UkuranFile > 1000000){
-  echo "<script>
-  alert('Ukuran gambar terlalu besar');
-  </script>";
+if(!$UkuranFile > 1044070){
+  echo "<script>alert('Ukuran gambar terlalu besar');</script>";
   return false;
   }
   //lolos pengecekan ,gambar siap upload
   // move_uploaded_file untuk memindahkan file
   // uniqid() akan membangkitkan string random
   //generate nama baru
+  // .= dirangkai/ditempel
   $namaFileBaru = uniqid();
   $namaFileBaru .= '.';
   $namaFileBaru .=$ekstensiGambar;
