@@ -35,10 +35,11 @@ if(isset($_POST["submit"])){
   <title>Ubah Data</title>
 </head>
 <body>
-  <form method="POST" action="">
+  <form method="POST" action="" enctype="multipart/form-data">
 <ul>  
 <h1>Ubah Data Mahasiswa</h1>
   <input type="hidden" name="id" value="<?= $mhs["id"]; ?>">
+  <input type="hidden" name="gambarLama" value="<?= $mhs["gambarLama"];?>">
   <li>
   <label for="nim">NIM : </label>
   <input type="text" name="nim" id="nim" required value="<?= $mhs["nim"]; ?>">
@@ -61,7 +62,7 @@ if(isset($_POST["submit"])){
   </li>
   <li>
     <label for="gambar">Gambar : </label>
-    <input type="text" name="gambar" id="gambar" required value="<?= $mhs["gambar"]; ?>">
+    <input type="file" name="gambar" id="gambar" required value="<?= $mhs["gambar"]; ?>" width="50";>
     </label>
   </li>
   <li>
