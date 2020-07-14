@@ -4,28 +4,35 @@ if (!isset($_SESSION["login"])) {
 	header("Location: login.php");
 	exit;
 }
-require 'koneksi.php';
+require 'functions.php';
 
-if (isset($_POST["registrasi"])) {
+if (isset($_POST["register"])) {
 	if (registrasi($_POST)>0) {
 		echo "<script>
-			alert('User berhasil ditambah');
+		alert('User berhasil ditambahkan');
 		</script>";
+	}else{
+		echo mysqli_error($conn);
 	}
+
 }
- ?><!DOCTYPE html>
+
+
+ ?>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Registrasi</title>
 	<style>
-		label{
+		label {
 			display: block;
 		}
 	</style>
 </head>
 <body>
-<h1>Halaman Registrasi</h1>
 <form method="post" action="">
+
+	<h1>Halaman Registrasi</h1>
 	<ul>
 		<li>
 			<label for="username">Username : </label>
@@ -36,11 +43,11 @@ if (isset($_POST["registrasi"])) {
 			<input type="password" name="password" id="password">
 		</li>
 		<li>
-			<label for="password2">Konfirmasi password : </label>
+			<label for="password2">Konfirmasi Password : </label>
 			<input type="password" name="password2" id="password2">
 		</li>
 		<li>
-			<button type="submit" name="registrasi">Registrasi</button>
+			<button type="submit" name="register">Register ! </button>
 		</li>
 	</ul>
 </form>

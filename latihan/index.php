@@ -1,4 +1,9 @@
 <?php 
+session_start();
+if (!isset($_SESSION["login"])) {
+  header("Location: login.php");
+  exit;
+}
 require 'koneksi.php';
 
 $mahasiswa =query("SELECT * FROM mahasiswa");
@@ -15,6 +20,7 @@ if(isset($_POST["cari"])){
   <title>Data Mahasiswa</title>
 </head>
 <body>
+  <a href="logout.php">Logout</a>
   <h1>Data Mahasiswa</h1>
   <a href="tambah.php">Tambah Data</a>
   <br><br>
