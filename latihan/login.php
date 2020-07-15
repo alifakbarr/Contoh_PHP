@@ -1,10 +1,26 @@
 <?php 
 session_start();
+require 'koneksi.php';
+if (isset($_COOKIE['id'])&& isset($_COOKIE['key'])) {
+	$id = $_COOKIE['id'];
+	$key = $_COOKIE['key'];
+
+	$result = mysqli_query($conn,"SELECT username FROM user WHERE id = $id");
+
+	$row = mysqli_fetch_assoc($result);
+	if ($key === hash('sha256', $row["username"])) {
+	$_SESSION['login'] = true;
+}
+
+}
+
+
+
 if (isset($_SESSION["login"])) {
 	header("Location: index.php");
 	exit;
 }
-require 'koneksi.php';
+
 
 if (isset($_POST["login"])) {
 	
@@ -21,6 +37,10 @@ if (isset($_POST["login"])) {
 		// cek password
 		if (password_verify($password, $row["password"])) {
 			$_SESSION["login"]=true;
+
+			setcookie('id',$row["id"],time()+60);
+			setcookie('key',hash('sha256',$row["username"])+60);
+
 			header("Location: index.php");
 			exit;
 		}
@@ -53,6 +73,11 @@ if (isset($error)) {
 		<li>
 			<label for="password">Password : </label>
 			<input type="password" name="password" id="password">
+		</li>
+		<li>
+			
+			<input type="checkbox" name="remember" id="remember">
+			<label for="remember">Remember Me</label>
 		</li>
 		<li>
 			<button type="submit" name="login">Login</button>
